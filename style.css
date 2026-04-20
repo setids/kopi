@@ -1,0 +1,170 @@
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.menu-item {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Footer Link Interaction */
+footer a {
+  position: relative;
+  display: inline-block;
+}
+
+footer ul a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #9a3412; /* orange-800 */
+  transition: width 0.3s ease;
+}
+
+footer ul a:hover::after {
+  width: 100%;
+}
+
+/* Social Icon Bounce */
+.group:hover svg {
+  animation: iconBounce 0.5s ease;
+}
+
+@keyframes iconBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Custom Shadow & Interaction for Map */
+#location iframe {
+  filter: grayscale(20%) contrast(110%);
+  transition: all 0.5s ease;
+}
+
+#location div:hover iframe {
+  filter: grayscale(0%) contrast(100%);
+}
+
+/* Container Utama Tombol (Perbaikan Posisi) */
+.fixed-wa {
+  position: fixed;
+  bottom: 25px;
+  right: 20px; /* Lebih mepet ke kanan */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Lingkaran Ikon WA (Diperkecil ukurannya) */
+.wa-icon-container {
+  background-color: #25d366;
+  width: 55px; /* Sebelumnya 65px */
+  height: 55px; /* Sebelumnya 65px */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+/* Efek Berdenyut (Pulse) */
+.wa-icon-container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #25d366;
+  border-radius: 50%;
+  z-index: -1;
+  animation: wa-pulse 2s infinite;
+}
+
+@keyframes wa-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Ukuran Icon SVG di dalamnya */
+.wa-icon-container svg {
+  width: 28px; /* Sebelumnya 32px */
+  height: 28px;
+}
+
+/* Responsif Mobile (Lebih kecil lagi untuk HP) */
+@media (max-width: 768px) {
+  .fixed-wa {
+    bottom: 20px;
+    right: 15px; /* Semakin menepi di layar kecil */
+  }
+  .wa-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+  .wa-icon-container svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Animasi masuk otomatis saat halaman terbuka */
+@keyframes fadeInEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fixed-wa {
+  position: fixed;
+  bottom: 25px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  /* Tambahkan baris ini agar langsung muncul dengan animasi halus */
+  animation:
+    fadeInEntrance 0.8s ease-out forwards,
+    wa-pulse 2s infinite;
+}
+
+/* Pastikan wa-pulse tetap ada namun tidak merusak fadeIn */
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
