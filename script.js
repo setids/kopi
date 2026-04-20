@@ -1,5 +1,9 @@
 // Inisialisasi AOS
-AOS.init({ duration: 800, once: true });
+AOS.init({
+  disable: "mobile", // Opsi 1: Matikan animasi di HP agar lebih ringan
+  once: true, // Animasi hanya jalan sekali
+  offset: 50, // Mulai animasi lebih awal agar tidak 'menabrak' layar
+});
 
 // Navbar Scroll
 window.addEventListener("scroll", () => {
